@@ -62,3 +62,5 @@ func change_state():
 		direction = Vector2.ZERO
 		timer.start(randi_range(1, stand_time_max))
 		
+func clockman():
+	pass

@@ -9,18 +9,18 @@ extends CharacterBody2D
 
 func _ready():
 	#set_camera_limits()
-	change_animation(direction)
+	change_animation()
 	
 func _physics_process(_delta):
-	var input_direction = Vector2(
+	direction = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 	)
-	change_animation(input_direction)
-	velocity = input_direction * speed
+	change_animation()
+	velocity = direction * speed
 	move_and_slide()
 	
-func change_animation(direction: Vector2):
+func change_animation():
 	
 	if direction.x < 0:
 		player.flip_h = true
@@ -45,3 +45,10 @@ func set_camera_limits():
 	if map_dimensions < 500: zoom_value += .5
 	cam.zoom.x = zoom_value
 	cam.zoom.y = zoom_value
+
+func _input(event):
+	if event.is_action_pressed("action"):
+		var wrench = preload("res://weapons/wrench/wrench.tscn").instantiate()
+		wrench.direction = direction
+		wrench.position = self.position.normalized()
+		call_deferred("add_child", wrench)
