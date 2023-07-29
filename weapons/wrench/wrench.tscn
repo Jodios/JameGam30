@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmh8qql5tvmne"]
+[gd_scene load_steps=8 format=3 uid="uid://cmh8qql5tvmne"]
 
 [ext_resource type="Script" path="res://weapons/wrench/wrench.gd" id="1_oo0fm"]
 [ext_resource type="Texture2D" uid="uid://dcyu5hblh131h" path="res://assets/wrench.png" id="2_bhqud"]
+[ext_resource type="AudioStream" uid="uid://dje4mvlgux2xd" path="res://assets/audio/wrench_hit_01.mp3" id="3_v2b30"]
 
 [sub_resource type="Animation" id="Animation_qgy3s"]
 resource_name = "blow_up"
@@ -40,8 +41,8 @@ _data = {
 "blow_up": SubResource("Animation_qgy3s")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sj3x7"]
-size = Vector2(2, 8.5)
+[sub_resource type="CircleShape2D" id="CircleShape2D_khyt2"]
+radius = 8.01561
 
 [node name="wrench" type="Sprite2D"]
 script = ExtResource("1_oo0fm")
@@ -58,5 +59,8 @@ libraries = {
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 1.25)
-shape = SubResource("RectangleShape2D_sj3x7")
+position = Vector2(0, 0.5)
+shape = SubResource("CircleShape2D_khyt2")
+
+[node name="wrench_hit_01" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_v2b30")
