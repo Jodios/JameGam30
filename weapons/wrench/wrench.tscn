@@ -64,3 +64,4 @@ shape = SubResource("CircleShape2D_khyt2")
 
 [node name="wrench_hit_01" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_v6m2f")
+bus = &"Audio"

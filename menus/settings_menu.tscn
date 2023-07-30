@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://blqwvy1bwd83e"]
+[gd_scene load_steps=6 format=3 uid="uid://blqwvy1bwd83e"]
 
 [ext_resource type="Script" path="res://menus/settings_menu.gd" id="1_ps24k"]
+[ext_resource type="AudioStream" uid="uid://brlb3kehpy6cr" path="res://assets/audio/background_1.mp3" id="2_0p0ik"]
 
 [sub_resource type="Animation" id="Animation_qb50t"]
 length = 0.001
@@ -59,9 +60,9 @@ offset_left = 138.0
 offset_top = 145.0
 offset_right = 963.0
 offset_bottom = 161.0
-min_value = -40.0
-max_value = 40.0
-step = 0.1
+max_value = 1.0
+step = 0.001
+value = 0.5
 
 [node name="audio_label" type="Label" parent="ColorRect"]
 layout_mode = 0
@@ -77,9 +78,9 @@ offset_left = 138.0
 offset_top = 193.0
 offset_right = 965.0
 offset_bottom = 209.0
-min_value = -40.0
-max_value = 40.0
-step = 0.1
+max_value = 1.0
+step = 0.001
+value = 0.5
 
 [node name="music_label" type="Label" parent="ColorRect"]
 layout_mode = 0
@@ -95,3 +96,7 @@ offset_top = 958.0
 offset_right = 88.0
 offset_bottom = 989.0
 text = "Settings"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0p0ik")
+bus = &"Music"

@@ -31,9 +31,6 @@ func _ready():
 	timer.start(randi_range(1, stand_time_max))
 	audio_timer.start(randi_range(1,voice_max))
 
-func _process(_delta):
-	set_volume()
-
 func _physics_process(_delta):
 	if direction.x < 0:
 		clock_enemy.flip_h = true
@@ -85,12 +82,6 @@ func change_state():
 # gets hit
 func grind_his_gears():
 	pass
-
-func set_volume():
-	for player in grind_bones_audio.get_children():
-		player.volume_db = Global.sound_volume
-	for player in grind_gears_audio.get_children():
-		player.volume_db = Global.sound_volume
 	
 func clockman():
 	pass
