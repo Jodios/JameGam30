@@ -1,7 +1,7 @@
 extends AnimatableBody2D
 
 @export var direction: Vector2 = Vector2.ZERO
-@export var speed: float = 1.0
+@export var speed: float = 1.6
 @export var walk_time_max: int = 5
 @export var stand_time_max: int = 10
 @export var voice_max: int = 30
@@ -32,9 +32,9 @@ enum state {
 var current_state: state = state.STANDING
 
 func _ready():
+	aggro_timer.timeout.connect(unset_aggro)
 	timer.timeout.connect(change_state)
 	timer.start(randi_range(1, stand_time_max))
-	aggro_timer.timeout.connect(unset_aggro)
 	aggro_area.body_entered.connect(set_aggro)
 	aggro_area.body_exited.connect(aggro_check)
 
@@ -106,11 +106,11 @@ func aggro_check(body):
 func unset_aggro():
 	target = null
 	is_aggro = false
-	current_state = state.STANDING
 	direction = Vector2.ZERO
+	current_state = state.STANDING
 	timer.start(randi_range(1, stand_time_max))
-	
-	
+	aggro_timer.stop()
+
 func speak(player):
 	if !speaking: 
 		player.play(0)
