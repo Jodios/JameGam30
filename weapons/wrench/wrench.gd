@@ -9,7 +9,7 @@ extends Sprite2D
 func _ready():
 	$Area2D.body_entered.connect(check_collision)
 
-func _process(_delta):
+func _physics_process(delta):
 	global_position += direction  * 5
 	rotation_degrees += 20
 	
