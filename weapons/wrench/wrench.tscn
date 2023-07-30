@@ -45,6 +45,7 @@ _data = {
 radius = 8.01561
 
 [node name="wrench" type="Sprite2D"]
+top_level = true
 script = ExtResource("1_oo0fm")
 
 [node name="Wrench" type="Sprite2D" parent="."]

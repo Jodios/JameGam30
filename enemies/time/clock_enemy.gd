@@ -11,7 +11,10 @@ extends AnimatableBody2D
 @onready var timer: Timer = $Timer
 @onready var grind_bones_audio: Node = $grind_bones_audio
 @onready var grind_gears_audio: Node = $grind_gears_audio
-@onready var audio_timer: Timer = $audio_timer
+@onready var aggro_area: Area2D = $aggro_area
+
+var target: CharacterBody2D = null
+var speaking: bool = false
 
 enum active_direction {
 	FRONT,
@@ -27,9 +30,8 @@ var current_state: state = state.STANDING
 
 func _ready():
 	timer.timeout.connect(change_state)
-	audio_timer.timeout.connect(test)
 	timer.start(randi_range(1, stand_time_max))
-	audio_timer.start(randi_range(1,voice_max))
+	aggro_area.body_entered.connect(set_aggro)
 
 func _physics_process(_delta):
 	if direction.x < 0:
@@ -55,13 +57,6 @@ func update_animation(move_direction: Vector2):
 	elif move_direction.x != 0:
 		animation_player.play("front_walk")
 		previous_direction = active_direction.FRONT
-		
-func test():
-	var player: AudioStreamPlayer2D = grind_bones_audio.get_child(
-		randi_range(0, grind_bones_audio.get_child_count()-1)
-	)
-	player.play(0)
-	audio_timer.start(randi_range(1,voice_max))
 	
 func change_state():
 	if !Global.input_enabled: return
@@ -81,7 +76,25 @@ func change_state():
 # from the levels whenever a gear 
 # gets hit
 func grind_his_gears():
-	pass
-	
+	var player: AudioStreamPlayer2D = grind_gears_audio.get_child(
+		randi_range(0, grind_bones_audio.get_child_count()-1)
+	)
+	speak(player)
+
+func set_aggro(body):
+	if body.has_method("playermethod"):
+		var player: AudioStreamPlayer2D = grind_bones_audio.get_child(
+			randi_range(0, grind_bones_audio.get_child_count()-1)
+		)
+		speak(player)
+
+func speak(player):
+	if !speaking: 
+		player.play(0)
+		speaking = true
+		player.finished.connect(func():
+			speaking = false
+		)
+
 func clockman():
 	pass

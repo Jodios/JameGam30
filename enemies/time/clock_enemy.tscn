@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://nwb8qkyyukbf"]
+[gd_scene load_steps=40 format=3 uid="uid://nwb8qkyyukbf"]
 
 [ext_resource type="Script" path="res://enemies/time/clock_enemy.gd" id="1_gipin"]
 [ext_resource type="Texture2D" uid="uid://c7hmfq6jp5dp" path="res://assets/chars/grandfather_clock_enemy.png" id="2_1m6km"]
@@ -188,6 +188,9 @@ _data = {
 "front_walk": SubResource("Animation_yb68m")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ctwwp"]
+radius = 124.0
+
 [node name="clock_enemy" type="AnimatableBody2D"]
 y_sort_enabled = true
 sync_to_physics = false
@@ -216,8 +219,6 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="audio_timer" type="Timer" parent="."]
 
 [node name="grind_bones_audio" type="Node" parent="."]
 
@@ -266,3 +267,9 @@ bus = &"Audio"
 [node name="grind_gears_6" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
 stream = ExtResource("13_yjxyg")
 bus = &"Audio"
+
+[node name="aggro_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="aggro_area"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_ctwwp")

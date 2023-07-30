@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var cam: Camera2D = $Camera2D
 @onready var player: Sprite2D = $old_man_sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var step_sounds: AudioStreamPlayer2D = $stepsounds
 
 func _ready():
 	set_camera_limits()
@@ -32,8 +33,10 @@ func change_animation():
 		player.flip_h = false
 		
 	if direction != Vector2.ZERO:
+		if !step_sounds.playing: step_sounds.play(0)
 		animation_player.play("move")
 	else:
+		step_sounds.stop()
 		animation_player.play("idle")
 		
 func set_camera_limits():
@@ -52,8 +55,8 @@ func set_camera_limits():
 
 func throw_wrench():
 	var wrench = preload("res://weapons/wrench/wrench.tscn").instantiate()
-	wrench.direction = direction
-	wrench.position = self.position.normalized()
+	wrench.direction = position.direction_to(get_global_mouse_position())
+	wrench.global_position = global_position
 	call_deferred("add_child", wrench)
 
 func playermethod():
