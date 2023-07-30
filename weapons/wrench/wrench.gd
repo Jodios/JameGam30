@@ -8,6 +8,7 @@ func _ready():
 	$Area2D.body_entered.connect(check_collision)
 
 func _process(_delta):
+	$wrench_hit_01.volume_db = Global.sound_volume
 	position += direction  * 2
 	rotation_degrees += 20
 	
@@ -15,10 +16,13 @@ func _process(_delta):
 		queue_free()
 		
 func check_collision(body):
+	if body.has_method("playermethod"): return
+	$wrench_hit_01.play(0)
+	direction = Vector2.ZERO
+	animation_player.speed_scale = 2
+	animation_player.play("blow_up")
+	await animation_player.animation_finished
+	queue_free()
 	if body.has_method("clockman"):
-		$wrench_hit_01.play(0)
-		direction = Vector2.ZERO
-		animation_player.speed_scale = 2
-		animation_player.play("blow_up")
-		await animation_player.animation_finished
-		queue_free()
+		#do something when clockman gets hit
+		pass

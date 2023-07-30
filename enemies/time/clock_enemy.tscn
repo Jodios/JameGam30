@@ -85,23 +85,6 @@ states/Walk/node = SubResource("AnimationNodeBlendSpace2D_qiuoc")
 states/Walk/position = Vector2(572, 101)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_5rayv"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_wvh88"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_4qej8")]
 
-[sub_resource type="Animation" id="Animation_306fe"]
-resource_name = "front_idle"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GrandfatherClockEnemy:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-
 [sub_resource type="Animation" id="Animation_7dvs1"]
 length = 0.001
 tracks/0/type = "value"
@@ -134,23 +117,6 @@ tracks/0/keys = {
 "values": [5, 6, 7, 8, 9]
 }
 
-[sub_resource type="Animation" id="Animation_yb68m"]
-resource_name = "front_walk"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GrandfatherClockEnemy:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [10, 11, 12, 13, 14]
-}
-
 [sub_resource type="Animation" id="Animation_nxrte"]
 resource_name = "back_walk"
 length = 0.8
@@ -166,6 +132,40 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_306fe"]
+resource_name = "front_idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrandfatherClockEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_yb68m"]
+resource_name = "front_walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrandfatherClockEnemy:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_56q2q"]

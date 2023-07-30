@@ -11,9 +11,20 @@ config_version=5
 [application]
 
 config/name="JameGam30"
-run/main_scene="res://for_testing_purposes_only.tscn"
+run/main_scene="res://levels/level_one/level_one.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://global.gd"
+MainMenu="*res://menus/settings_menu.tscn"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=1024
+window/stretch/mode="viewport"
 
 [input]
 
