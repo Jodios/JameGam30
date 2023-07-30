@@ -31,6 +31,7 @@ func _physics_process(_delta):
 		clock_enemy.flip_h = false
 	update_animation(direction)
 	position += direction * speed
+	move_and_collide(direction * speed)
 
 func update_animation(move_direction: Vector2):
 	if move_direction == Vector2.ZERO:

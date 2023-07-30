@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd3uc5lg6kc8t"]
+
+[ext_resource type="Texture2D" uid="uid://b3wag87nb1mkq" path="res://assets/gears.png" id="1_4dubh"]
+[ext_resource type="Script" path="res://gear.gd" id="1_wt8xk"]
+
+[node name="gear" type="AnimatableBody2D"]
+script = ExtResource("1_wt8xk")
+
+[node name="Gears" type="Sprite2D" parent="."]
+texture = ExtResource("1_4dubh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-16, -16)
+polygon = PackedVector2Array(16, 0, 20, 0, 20, 3, 22, 3, 22, 4, 26, 0, 32, 6, 28, 10, 30, 12, 32, 12, 32, 20, 29, 20, 28, 23, 32, 26, 26, 32, 22, 28, 19, 30, 19, 32, 13, 32, 13, 29, 10, 29, 6, 32, 0, 26, 3, 23, 3, 20, 0, 20, 0, 12, 3, 12, 3, 9, 0, 5, 5, 0, 6, -1, 9, 4, 12, 2, 12, 0)
