@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ji51hv131613"
-path="res://.godot/imported/grind_gears_6.wav-d928ea71f4d076e14e71bb4f18c0f369.sample"
+path="res://.godot/imported/grind_gears_6.wav-f3ea8ee3d712ec16276b79002182f6ae.sample"
 
 [deps]
 
-source_file="res://assets/audio/grind_gears_6.wav"
-dest_files=["res://.godot/imported/grind_gears_6.wav-d928ea71f4d076e14e71bb4f18c0f369.sample"]
+source_file="res://assets/audio/grind_gears/grind_gears_6.wav"
+dest_files=["res://.godot/imported/grind_gears_6.wav-f3ea8ee3d712ec16276b79002182f6ae.sample"]
 
 [params]
 

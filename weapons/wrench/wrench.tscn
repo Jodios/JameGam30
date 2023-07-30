@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://weapons/wrench/wrench.gd" id="1_oo0fm"]
 [ext_resource type="Texture2D" uid="uid://dcyu5hblh131h" path="res://assets/wrench.png" id="2_bhqud"]
-[ext_resource type="AudioStream" uid="uid://dje4mvlgux2xd" path="res://assets/audio/wrench_hit_01.mp3" id="3_v2b30"]
+[ext_resource type="AudioStream" uid="uid://dje4mvlgux2xd" path="res://assets/audio/wrench_hit_01.mp3" id="3_v6m2f"]
 
 [sub_resource type="Animation" id="Animation_cv1b5"]
 length = 0.001
@@ -63,4 +63,4 @@ position = Vector2(0, 0.5)
 shape = SubResource("CircleShape2D_khyt2")
 
 [node name="wrench_hit_01" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_v2b30")
+stream = ExtResource("3_v6m2f")

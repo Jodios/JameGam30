@@ -1,7 +1,18 @@
-[gd_scene load_steps=28 format=3 uid="uid://nwb8qkyyukbf"]
+[gd_scene load_steps=39 format=3 uid="uid://nwb8qkyyukbf"]
 
 [ext_resource type="Script" path="res://enemies/time/clock_enemy.gd" id="1_gipin"]
 [ext_resource type="Texture2D" uid="uid://c7hmfq6jp5dp" path="res://assets/chars/grandfather_clock_enemy.png" id="2_1m6km"]
+[ext_resource type="AudioStream" uid="uid://ekvnwconn7xa" path="res://assets/audio/grind_bones/1.wav" id="3_c1gan"]
+[ext_resource type="AudioStream" uid="uid://b2nf6t3uvsuhm" path="res://assets/audio/grind_bones/2.wav" id="4_e57qo"]
+[ext_resource type="AudioStream" uid="uid://b6u06kvcsbash" path="res://assets/audio/grind_bones/3.wav" id="5_32yai"]
+[ext_resource type="AudioStream" uid="uid://77474aattbla" path="res://assets/audio/grind_bones/4.wav" id="6_kwrbx"]
+[ext_resource type="AudioStream" uid="uid://cctgmcwbey0jn" path="res://assets/audio/grind_bones/5.wav" id="7_8ut3p"]
+[ext_resource type="AudioStream" uid="uid://bmv0pklng26la" path="res://assets/audio/grind_gears/grind_gears_1.wav" id="8_pj0a5"]
+[ext_resource type="AudioStream" uid="uid://bf6vhxwlkkx7b" path="res://assets/audio/grind_gears/grind_gears_2.wav" id="9_nb6iq"]
+[ext_resource type="AudioStream" uid="uid://co0sm6y0fhb27" path="res://assets/audio/grind_gears/grind_gears_3.wav" id="10_bacbo"]
+[ext_resource type="AudioStream" uid="uid://qxxhs3dubjbl" path="res://assets/audio/grind_gears/grind_gears_4.wav" id="11_rf0mk"]
+[ext_resource type="AudioStream" uid="uid://dbn8hcvk42w1o" path="res://assets/audio/grind_gears/grind_gears_5.wav" id="12_s4kqd"]
+[ext_resource type="AudioStream" uid="uid://ji51hv131613" path="res://assets/audio/grind_gears/grind_gears_6.wav" id="13_yjxyg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idmc1"]
 size = Vector2(14, 7)
@@ -179,6 +190,7 @@ _data = {
 
 [node name="clock_enemy" type="AnimatableBody2D"]
 y_sort_enabled = true
+sync_to_physics = false
 script = ExtResource("1_gipin")
 
 [node name="GrandfatherClockEnemy" type="Sprite2D" parent="."]
@@ -204,3 +216,42 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="audio_timer" type="Timer" parent="."]
+
+[node name="grind_bones_audio" type="Node" parent="."]
+
+[node name="grind_bones_1" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+stream = ExtResource("3_c1gan")
+
+[node name="grind_bones_2" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+stream = ExtResource("4_e57qo")
+
+[node name="grind_bones_3" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+stream = ExtResource("5_32yai")
+
+[node name="grind_bones_4" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+stream = ExtResource("6_kwrbx")
+
+[node name="grind_bones_5" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+stream = ExtResource("7_8ut3p")
+
+[node name="grind_gears_audio" type="Node" parent="."]
+
+[node name="grind_gears_1" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+stream = ExtResource("8_pj0a5")
+
+[node name="grind_gears_2" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+stream = ExtResource("9_nb6iq")
+
+[node name="grind_gears_3" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+stream = ExtResource("10_bacbo")
+
+[node name="grind_gears_4" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+stream = ExtResource("11_rf0mk")
+
+[node name="grind_gears_5" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+stream = ExtResource("12_s4kqd")
+
+[node name="grind_gears_6" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+stream = ExtResource("13_yjxyg")
