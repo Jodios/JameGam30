@@ -69,14 +69,14 @@ func change_state():
 	if !Global.input_enabled || is_aggro: return
 	if current_state == state.STANDING:
 		current_state = state.WALKING
-		direction = Vector2(
+		self.direction = Vector2(
 			randf_range(-1.0, 1.0),
 			randf_range(-1.0, 1.0),
 		)
 		timer.start(randi_range(1, walk_time_max))
 	elif current_state == state.WALKING:
 		current_state = state.STANDING
-		direction = Vector2.ZERO
+		self.direction = Vector2.ZERO
 		timer.start(randi_range(1, stand_time_max))
 		
 # This function will get called 
