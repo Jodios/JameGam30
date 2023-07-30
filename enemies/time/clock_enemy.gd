@@ -4,10 +4,15 @@ extends AnimatableBody2D
 @export var speed: float = 2.0
 @export var walk_time_max: int = 5
 @export var stand_time_max: int = 10
+@export var voice_max: int = 30
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var clock_enemy: Sprite2D = $GrandfatherClockEnemy
 @onready var timer: Timer = $Timer
+@onready var grind_bones_audio: Node = $grind_bones_audio
+@onready var grind_gears_audio: Node = $grind_gears_audio
+@onready var audio_timer: Timer = $audio_timer
+
 enum active_direction {
 	FRONT,
 	BACK
@@ -22,8 +27,13 @@ var current_state: state = state.STANDING
 
 func _ready():
 	timer.timeout.connect(change_state)
+	audio_timer.timeout.connect(test)
 	timer.start(randi_range(1, stand_time_max))
-	
+	audio_timer.start(randi_range(1,voice_max))
+
+func _process(_delta):
+	set_volume()
+
 func _physics_process(_delta):
 	if direction.x < 0:
 		clock_enemy.flip_h = true
@@ -49,6 +59,12 @@ func update_animation(move_direction: Vector2):
 		animation_player.play("front_walk")
 		previous_direction = active_direction.FRONT
 		
+func test():
+	var player: AudioStreamPlayer2D = grind_bones_audio.get_child(
+		randi_range(0, grind_bones_audio.get_child_count()-1)
+	)
+	player.play(0)
+	audio_timer.start(randi_range(1,voice_max))
 	
 func change_state():
 	if !Global.input_enabled: return
@@ -64,5 +80,17 @@ func change_state():
 		direction = Vector2.ZERO
 		timer.start(randi_range(1, stand_time_max))
 		
+# This function will get called 
+# from the levels whenever a gear 
+# gets hit
+func grind_his_gears():
+	pass
+
+func set_volume():
+	for player in grind_bones_audio.get_children():
+		player.volume_db = Global.sound_volume
+	for player in grind_gears_audio.get_children():
+		player.volume_db = Global.sound_volume
+	
 func clockman():
 	pass
