@@ -8,7 +8,6 @@ func _ready():
 	$Area2D.body_entered.connect(check_collision)
 
 func _process(_delta):
-	$wrench_hit_01.volume_db = Global.sound_volume
 	position += direction  * 2
 	rotation_degrees += 20
 	
