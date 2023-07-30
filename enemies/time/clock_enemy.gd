@@ -50,6 +50,7 @@ func update_animation(move_direction: Vector2):
 		
 	
 func change_state():
+	if !Global.input_enabled: return
 	if current_state == state.STANDING:
 		current_state = state.WALKING
 		direction = Vector2(
