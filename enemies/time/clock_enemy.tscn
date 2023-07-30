@@ -220,6 +220,8 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="aggro_timer" type="Timer" parent="."]
+
 [node name="grind_bones_audio" type="Node" parent="."]
 
 [node name="grind_bones_1" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
