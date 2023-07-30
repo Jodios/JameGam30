@@ -1,14 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://0c71dbscsmyl"]
+[gd_scene load_steps=4 format=3 uid="uid://0c71dbscsmyl"]
 
 [ext_resource type="Texture2D" uid="uid://b3wag87nb1mkq" path="res://assets/gears.png" id="1_4dubh"]
 [ext_resource type="Script" path="res://gear.gd" id="1_wt8xk"]
+[ext_resource type="FontFile" uid="uid://b6ftd4uqnwhj8" path="res://assets/fonts/MapleMono-Regular.ttf" id="3_lp18e"]
 
 [node name="gear" type="AnimatableBody2D"]
 script = ExtResource("1_wt8xk")
 
 [node name="Gears" type="Sprite2D" parent="."]
+position = Vector2(7.62939e-06, 7.62939e-06)
+scale = Vector2(6.125, 6.125)
 texture = ExtResource("1_4dubh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-16, -16)
+position = Vector2(-98, -98)
+scale = Vector2(6.10744, 6.10744)
 polygon = PackedVector2Array(16, 0, 20, 0, 20, 3, 22, 3, 22, 4, 26, 0, 32, 6, 28, 10, 30, 12, 32, 12, 32, 20, 29, 20, 28, 23, 32, 26, 26, 32, 22, 28, 19, 30, 19, 32, 13, 32, 13, 29, 10, 29, 6, 32, 0, 26, 3, 23, 3, 20, 0, 20, 0, 12, 3, 12, 3, 9, 0, 5, 5, 0, 6, -1, 9, 4, 12, 2, 12, 0)
+
+[node name="health_bar" type="ProgressBar" parent="."]
+modulate = Color(0.643137, 0.513726, 0, 1)
+top_level = true
+z_index = 3
+anchors_preset = -1
+offset_left = -68.0
+offset_top = -11.0
+offset_right = 71.0
+offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("3_lp18e")
+theme_override_font_sizes/font_size = 9
+value = 100.0
+show_percentage = false
