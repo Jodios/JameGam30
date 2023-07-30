@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1d25ms7dw6xy"]
+[gd_scene load_steps=9 format=3 uid="uid://b1d25ms7dw6xy"]
 
 [ext_resource type="Script" path="res://characters/old_man/old_man.gd" id="1_uw8rn"]
 [ext_resource type="Texture2D" uid="uid://4geqwf1qlgpu" path="res://assets/old_man/16x16.png" id="2_ldiyp"]
+[ext_resource type="AudioStream" uid="uid://dwbshm4gpwyru" path="res://assets/audio/stepping_noise.mp3" id="3_40ptg"]
 
 [sub_resource type="Animation" id="Animation_653vj"]
 length = 0.001
@@ -85,3 +86,7 @@ shape = SubResource("RectangleShape2D_r8rej")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+
+[node name="stepsounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_40ptg")
+bus = &"Audio"

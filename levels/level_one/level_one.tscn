@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://cjy420oaww7kx" path="res://tileset.tres" id="1_u5iym"]
 [ext_resource type="PackedScene" uid="uid://b1d25ms7dw6xy" path="res://characters/old_man/old_man.tscn" id="2_f6utu"]
-[ext_resource type="PackedScene" path="res://gear.tscn" id="3_olkqy"]
+[ext_resource type="PackedScene" uid="uid://0c71dbscsmyl" path="res://gear.tscn" id="3_olkqy"]
 [ext_resource type="PackedScene" uid="uid://nwb8qkyyukbf" path="res://enemies/time/clock_enemy.tscn" id="4_njnva"]
 
 [node name="level_one" type="Node2D"]
@@ -34,6 +34,7 @@ layer_2/tile_data = PackedInt32Array(-65535, 327680, 7, -65534, 589824, 7, -6553
 position = Vector2(240, 344)
 
 [node name="gear" parent="." instance=ExtResource("3_olkqy")]
+top_level = true
 position = Vector2(461, 108)
 scale = Vector2(3, 3)
 
