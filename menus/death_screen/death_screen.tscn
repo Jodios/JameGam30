@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jgn2d"]
 size = Vector2(30.0432, 11.0504)
 
-[node name="death_screen" type="CanvasLayer"]
+[node name="death_screen" type="Node2D"]
 script = ExtResource("1_1dqcv")
 
 [node name="TileMap" type="TileMap" parent="."]
