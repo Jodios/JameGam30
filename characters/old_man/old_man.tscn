@@ -90,3 +90,5 @@ zoom = Vector2(4, 4)
 [node name="stepsounds" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_40ptg")
 bus = &"Audio"
+
+[node name="throw_cooldown" type="Timer" parent="."]

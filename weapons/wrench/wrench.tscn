@@ -41,8 +41,8 @@ _data = {
 "blow_up": SubResource("Animation_qgy3s")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_khyt2"]
-radius = 8.01561
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi5qb"]
+size = Vector2(2, 9)
 
 [node name="wrench" type="Sprite2D"]
 top_level = true
@@ -61,7 +61,7 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.5)
-shape = SubResource("CircleShape2D_khyt2")
+shape = SubResource("RectangleShape2D_xi5qb")
 
 [node name="wrench_hit_01" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_v6m2f")

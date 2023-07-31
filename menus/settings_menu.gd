@@ -30,12 +30,12 @@ func open_or_close_settings_box():
 		animation_player.play_backwards("slide_in")
 		await animation_player.animation_finished
 		reverse = false
-		Global.input_enabled = true
+		get_tree().paused = false
 	else:
 		animation_player.play("slide_in")
 		await animation_player.animation_finished
 		reverse = true
-		Global.input_enabled = false
+		get_tree().paused = true
 
 func on_music_slider_change(value):
 	Global.music_volume = value

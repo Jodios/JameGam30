@@ -2,19 +2,24 @@ extends CharacterBody2D
 
 @export var direction: Vector2 = Vector2.ZERO
 @export var speed: float = 200
+@export var cooldown: float = .5
 
 @onready var cam: Camera2D = $Camera2D
 @onready var player: Sprite2D = $old_man_sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var step_sounds: AudioStreamPlayer2D = $stepsounds
+@onready var throw_cooldown: Timer = $throw_cooldown
+
+var is_cooled_down: bool = true
 
 func _ready():
 	set_camera_limits()
 	change_animation()
+	throw_cooldown.timeout.connect(func():
+		is_cooled_down = true
+	)
 	
 func _physics_process(_delta):
-	if !Global.input_enabled: return
-	
 	if Input.is_action_just_pressed("action"): throw_wrench()
 		
 	direction = Vector2(
@@ -54,9 +59,12 @@ func set_camera_limits():
 	cam.zoom.y = zoom_value
 
 func throw_wrench():
+	if !is_cooled_down: return
+	throw_cooldown.start(cooldown)
+	is_cooled_down = false
 	var wrench = preload("res://weapons/wrench/wrench.tscn").instantiate()
 	wrench.direction = position.direction_to(get_global_mouse_position())
-	wrench.global_position = global_position
+	wrench.global_position = global_position + (wrench.direction*10)
 	call_deferred("add_child", wrench)
 
 func playermethod():

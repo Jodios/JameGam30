@@ -41,6 +41,7 @@ _data = {
 }
 
 [node name="settings_menu" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_ps24k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -35,8 +35,8 @@ position = Vector2(240, 344)
 
 [node name="gear" parent="." instance=ExtResource("3_olkqy")]
 top_level = true
-position = Vector2(461, 108)
-scale = Vector2(3, 3)
+position = Vector2(459, 111)
+scale = Vector2(0.5, 0.5)
 
 [node name="clock_enemy" parent="." instance=ExtResource("4_njnva")]
 position = Vector2(126, 285)
