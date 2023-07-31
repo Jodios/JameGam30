@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var direction: Vector2 = Vector2.ZERO
 @export var speed: float = 200
-@export var cooldown: float = 1
+@export var cooldown: float = .5
 @export var max_health: float = 100.0
 @export var health: float = max_health
 var health_third: float = max_health / 3

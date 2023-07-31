@@ -2,7 +2,7 @@ extends StaticBody2D
 
 @export var turn_speed: float = 1
 @export var max_health: float = 1000
-@export var health: float = max_health
+var health: float = max_health
 var health_third: float = max_health / 3
 
 @onready var health_bar: ProgressBar = $health_bar
@@ -11,6 +11,7 @@ func _ready():
 	health_bar.global_position = self.position - Vector2(70,10)
 	health_bar.value = health
 	health_bar.max_value = max_health
+	health = max_health
 
 func _physics_process(_delta):
 	rotation_degrees += turn_speed
