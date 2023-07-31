@@ -24,6 +24,8 @@ func _ready():
 	
 func _process(_delta):
 	background_music.volume_db = Global.music_volume
+	if Input.is_action_just_pressed("settings"):
+		open_or_close_settings_box()
 	
 func open_or_close_settings_box():
 	if reverse:

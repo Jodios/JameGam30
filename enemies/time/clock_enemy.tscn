@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://ji51hv131613" path="res://assets/audio/grind_gears/grind_gears_6.wav" id="13_yjxyg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idmc1"]
-size = Vector2(14, 7)
+size = Vector2(50, 29)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_84r05"]
 animation = &"back_idle"
@@ -189,25 +189,27 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ctwwp"]
-radius = 124.0
+radius = 332.001
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mmij5"]
-radius = 27.0185
+radius = 75.0267
 
-[node name="clock_enemy" type="AnimatableBody2D"]
+[node name="clock_enemy" type="CharacterBody2D"]
 y_sort_enabled = true
-sync_to_physics = false
+position = Vector2(-43, -41)
 script = ExtResource("1_gipin")
 
 [node name="GrandfatherClockEnemy" type="Sprite2D" parent="."]
 y_sort_enabled = true
+position = Vector2(42.5, 69.0625)
+scale = Vector2(3.65625, 3.65625)
 texture = ExtResource("2_1m6km")
 offset = Vector2(2.08165e-12, -10)
 hframes = 5
 vframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2.5)
+position = Vector2(42, 57.5)
 shape = SubResource("RectangleShape2D_idmc1")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -225,62 +227,82 @@ libraries = {
 
 [node name="aggro_timer" type="Timer" parent="."]
 
+[node name="attack_cooldown" type="Timer" parent="."]
+
+[node name="health_bar" type="ProgressBar" parent="."]
+offset_left = -18.0
+offset_top = -57.0
+offset_right = 104.0
+offset_bottom = -30.0
+metadata/_edit_use_anchors_ = true
+
 [node name="grind_bones_audio" type="Node" parent="."]
 
 [node name="grind_bones_1" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("3_c1gan")
 bus = &"Audio"
 
 [node name="grind_bones_2" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("4_e57qo")
 bus = &"Audio"
 
 [node name="grind_bones_3" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("5_32yai")
 bus = &"Audio"
 
 [node name="grind_bones_4" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("6_kwrbx")
 bus = &"Audio"
 
 [node name="grind_bones_5" type="AudioStreamPlayer2D" parent="grind_bones_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("7_8ut3p")
 bus = &"Audio"
 
 [node name="grind_gears_audio" type="Node" parent="."]
 
 [node name="grind_gears_1" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("8_pj0a5")
 bus = &"Audio"
 
 [node name="grind_gears_2" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("9_nb6iq")
 bus = &"Audio"
 
 [node name="grind_gears_3" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("10_bacbo")
 bus = &"Audio"
 
 [node name="grind_gears_4" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("11_rf0mk")
 bus = &"Audio"
 
 [node name="grind_gears_5" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("12_s4kqd")
 bus = &"Audio"
 
 [node name="grind_gears_6" type="AudioStreamPlayer2D" parent="grind_gears_audio"]
+position = Vector2(-43, -41)
 stream = ExtResource("13_yjxyg")
 bus = &"Audio"
 
 [node name="aggro_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="aggro_area"]
-position = Vector2(0, -9)
+position = Vector2(43, 41)
 shape = SubResource("CircleShape2D_ctwwp")
 
 [node name="attack_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_area"]
-position = Vector2(0, -9)
+position = Vector2(43, 40)
 shape = SubResource("CircleShape2D_mmij5")

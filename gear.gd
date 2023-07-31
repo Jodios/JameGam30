@@ -3,6 +3,7 @@ extends StaticBody2D
 @export var turn_speed: float = 1
 @export var max_health: float = 1000
 @export var health: float = max_health
+var health_third: float = max_health / 3
 
 @onready var health_bar: ProgressBar = $health_bar
 
@@ -18,14 +19,14 @@ func _physics_process(_delta):
 	else:
 		health_bar.visible = true
 	health_bar.value = health
-	if health >= 750 && health <= max_health:
+	if health >= max_health-health_third && health <= max_health:
 		health_bar.modulate = Color(0x00, 0xFF, 0x00, 1)
-	elif health >= 350:
+	elif health >= max_health-(health_third*2):
 		health_bar.modulate = Color(0xA4, 0x83, 0x00, 1)
 	else:
 		health_bar.modulate = Color(0xFF, 0x00, 0x00, 1)
 	
-func take_damage(damage: float):
+func take_damage(damage: float, damage_direction: Vector2 = Vector2.ZERO):
 	if health <= 0: return
 	turn_speed -= (damage/max_health)
 	health -= damage
