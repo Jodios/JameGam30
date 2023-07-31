@@ -21,14 +21,14 @@ func check_collision(body):
 	if body.has_method("playermethod"): return
 	
 	$wrench_hit_01.play(0)
-	direction = Vector2.ZERO
 	animation_player.speed_scale = 2
 	animation_player.play("blow_up")
 	if body.has_method("clockman"):
-		pass
-	if body.has_method("take_damage") && !has_hit:
+		body.take_damage(damage, -direction, get_parent())
+	elif body.has_method("take_damage") && !has_hit:
 		has_hit = true
 		body.take_damage(damage)
+	direction = Vector2.ZERO
 	await animation_player.animation_finished
 	queue_free()
 

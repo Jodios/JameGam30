@@ -2,17 +2,23 @@ extends CharacterBody2D
 
 @export var direction: Vector2 = Vector2.ZERO
 @export var speed: float = 200
-@export var cooldown: float = .5
+@export var cooldown: float = 1
+@export var max_health: float = 100.0
+@export var health: float = max_health
+var health_third: float = max_health / 3
 
 @onready var cam: Camera2D = $Camera2D
 @onready var player: Sprite2D = $old_man_sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var step_sounds: AudioStreamPlayer2D = $stepsounds
 @onready var throw_cooldown: Timer = $throw_cooldown
+@onready var health_bar: ProgressBar = $health_bar
 
 var is_cooled_down: bool = true
 
 func _ready():
+	Global.level = 1
+	health_bar.value = health
 	set_camera_limits()
 	change_animation()
 	throw_cooldown.timeout.connect(func():
@@ -26,6 +32,17 @@ func _physics_process(_delta):
 		Input.get_action_strength("right") - Input.get_action_strength("left"),
 		Input.get_action_strength("down") - Input.get_action_strength("up")
 	)
+	if health >= max_health:
+		health_bar.visible = false
+	else:
+		health_bar.visible = true
+	health_bar.value = health
+	if health >= max_health-health_third && health <= max_health:
+		health_bar.modulate = Color(0x00, 0xFF, 0x00, 1)
+	elif health >= max_health-(health_third*2):
+		health_bar.modulate = Color(0xA4, 0x83, 0x00, 1)
+	else:
+		health_bar.modulate = Color(0xFF, 0x00, 0x00, 1)
 	change_animation()
 	velocity = direction * speed
 	move_and_slide()
@@ -66,6 +83,12 @@ func throw_wrench():
 	wrench.direction = position.direction_to(get_global_mouse_position())
 	wrench.global_position = global_position + (wrench.direction*10)
 	call_deferred("add_child", wrench)
+
+func take_damage(damage: float):
+	if health <= 0: return
+	health -= damage
+	if health <= 0:
+		Transition.dissolve("res://menus/death_screen/death_screen.tscn")
 
 func playermethod():
 	pass

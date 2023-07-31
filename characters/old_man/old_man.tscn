@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1d25ms7dw6xy"]
+[gd_scene load_steps=10 format=3 uid="uid://b1d25ms7dw6xy"]
 
 [ext_resource type="Script" path="res://characters/old_man/old_man.gd" id="1_uw8rn"]
 [ext_resource type="Texture2D" uid="uid://4geqwf1qlgpu" path="res://assets/old_man/16x16.png" id="2_ldiyp"]
 [ext_resource type="AudioStream" uid="uid://dwbshm4gpwyru" path="res://assets/audio/stepping_noise.mp3" id="3_40ptg"]
+[ext_resource type="FontFile" uid="uid://b6ftd4uqnwhj8" path="res://assets/fonts/MapleMono-Regular.ttf" id="4_fulem"]
 
 [sub_resource type="Animation" id="Animation_653vj"]
 length = 0.001
@@ -61,7 +62,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8rej"]
-size = Vector2(7, 4)
+size = Vector2(55.75, 24)
 
 [node name="old_man" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -69,6 +70,8 @@ script = ExtResource("1_uw8rn")
 
 [node name="old_man_sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
+position = Vector2(-5.96046e-08, 0)
+scale = Vector2(8.25, 8.25)
 texture = ExtResource("2_ldiyp")
 offset = Vector2(2.08165e-12, -8)
 hframes = 5
@@ -81,7 +84,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -2)
+position = Vector2(4.125, -13)
 shape = SubResource("RectangleShape2D_r8rej")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -92,3 +95,12 @@ stream = ExtResource("3_40ptg")
 bus = &"Audio"
 
 [node name="throw_cooldown" type="Timer" parent="."]
+
+[node name="health_bar" type="ProgressBar" parent="."]
+offset_left = -98.0
+offset_top = -209.0
+offset_right = 99.0
+offset_bottom = -132.0
+theme_override_fonts/font = ExtResource("4_fulem")
+theme_override_font_sizes/font_size = 56
+value = 100.0
