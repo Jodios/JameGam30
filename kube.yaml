@@ -1,0 +1,66 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: wrenchman
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wrenchman
+  template:
+    metadata:
+      labels:
+        app: wrenchman
+    spec:
+      containers:
+        - name: wrenchman
+          image: #{deployment.image.name}#
+          ports:
+            - name: http-api
+              containerPort: 80
+              protocol: TCP
+          imagePullPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: wrenchman
+  namespace: prod
+  labels:
+    version: 0.1.203643-1
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: wrenchman
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: wrenchman
+  namespace: prod
+spec:
+  tls:
+    - hosts:
+        - wrenchman.jodios.com
+      secretName: wrenchman-tls
+  rules:
+  - host: wrenchman.jodios.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: wrenchman
+            port:
+              number: 80
+        pathType: ImplementationSpecific

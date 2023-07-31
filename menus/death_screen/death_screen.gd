@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node2D
 
 @onready var score_label: Label = $Label2
 @onready var retry_button_area: Area2D =  $RetryButton/Area2D
