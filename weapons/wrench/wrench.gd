@@ -2,6 +2,7 @@ extends Sprite2D
 
 @export var direction: Vector2
 @export var damage: float = 10.0
+@export var rotation_speed: float = 20.00
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var has_hit: bool = false
@@ -12,7 +13,7 @@ func _ready():
 
 func _physics_process(_delta):
 	global_position += direction  * 5
-	rotation_degrees += 20
+	rotation_degrees += rotation_speed
 	
 	if position.x < -1000 || position.x > 1000 || position.y < -1000 || position.y > 1000:
 		queue_free()
