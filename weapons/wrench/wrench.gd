@@ -24,8 +24,9 @@ func check_collision(body):
 	$wrench_hit_01.play(0)
 	animation_player.speed_scale = 2
 	animation_player.play("blow_up")
-	if body.has_method("clockman"):
+	if body.has_method("clockman") && !has_hit:
 		body.take_damage(damage, -direction, get_parent())
+		has_hit = true
 	elif body.has_method("take_damage") && !has_hit:
 		has_hit = true
 		body.take_damage(damage)

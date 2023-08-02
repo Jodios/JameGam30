@@ -177,8 +177,10 @@ func try_to_stop_attacking(body):
 
 func take_damage(damage_amount: float, damage_direction: Vector2, body: CharacterBody2D):
 	position -= damage_direction * 10
+	Global.time_affecting_hits += 1
 	if health <= 0 && !dying:
 		die()
+		return
 	health -= damage_amount
 	target = body
 	is_aggro = true

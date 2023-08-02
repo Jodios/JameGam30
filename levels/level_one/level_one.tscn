@@ -41,7 +41,7 @@ scale = Vector2(0.15, 0.15)
 top_level = true
 position = Vector2(263, 263)
 scale = Vector2(0.5, 0.5)
-max_health = 500.0
+max_health = 400.0
 
 [node name="clock_enemy" parent="." instance=ExtResource("4_njnva")]
 position = Vector2(130, 141)
