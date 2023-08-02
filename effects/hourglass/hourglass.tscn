@@ -40,12 +40,11 @@ _data = {
 "time_progress": SubResource("Animation_3yjm7")
 }
 
-[node name="hourglass" type="Sprite2D"]
-top_level = true
-z_index = 4
+[node name="hourglass" type="CanvasLayer"]
 script = ExtResource("1_igdgt")
 
 [node name="HourGlass" type="Sprite2D" parent="."]
+position = Vector2(21, 22)
 texture = ExtResource("2_2b2oo")
 hframes = 30
 

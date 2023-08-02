@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://buq2gw88v5vfx"]
+[gd_scene load_steps=7 format=3 uid="uid://buq2gw88v5vfx"]
 
+[ext_resource type="Script" path="res://levels/level_one/level_one.gd" id="1_8x56q"]
 [ext_resource type="TileSet" uid="uid://cjy420oaww7kx" path="res://tileset.tres" id="1_u5iym"]
 [ext_resource type="PackedScene" uid="uid://b1d25ms7dw6xy" path="res://characters/old_man/old_man.tscn" id="2_f6utu"]
 [ext_resource type="PackedScene" uid="uid://0c71dbscsmyl" path="res://gear.tscn" id="3_olkqy"]
 [ext_resource type="PackedScene" uid="uid://nwb8qkyyukbf" path="res://enemies/time/clock_enemy.tscn" id="4_njnva"]
+[ext_resource type="PackedScene" uid="uid://veiknld3jtsk" path="res://effects/hourglass/hourglass.tscn" id="6_kk3e4"]
 
 [node name="level_one" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_8x56q")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -47,3 +50,8 @@ scale = Vector2(0.4, 0.4)
 [node name="clock_enemy3" parent="." instance=ExtResource("4_njnva")]
 position = Vector2(246, 339)
 scale = Vector2(0.4, 0.4)
+
+[node name="hourglass" parent="." instance=ExtResource("6_kk3e4")]
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+time_in_seconds = 10.0
