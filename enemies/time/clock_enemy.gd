@@ -113,10 +113,7 @@ func change_state():
 # from the levels whenever a gear 
 # gets hit
 func grind_his_gears():
-	var player: AudioStreamPlayer2D = grind_gears_audio.get_child(
-		randi_range(0, grind_bones_audio.get_child_count()-1)
-	)
-	speak(player)
+	play_random_audio(grind_gears_audio)
 
 func set_aggro(body):
 	if body.has_method("playermethod"):
@@ -124,10 +121,7 @@ func set_aggro(body):
 		timer.stop()
 		aggro_timer.stop()
 		target = body
-		var player: AudioStreamPlayer2D = grind_bones_audio.get_child(
-			randi_range(0, grind_bones_audio.get_child_count()-1)
-		)
-		speak(player)
+		play_random_audio($aggro_audio)
 		
 func aggro_check(body):
 	if body.has_method("playermethod"):
@@ -140,14 +134,7 @@ func unset_aggro():
 	current_state = state.STANDING
 	timer.start(randi_range(1, stand_time_max))
 	aggro_timer.stop()
-
-func speak(player):
-	if !speaking: 
-		player.play(0)
-		speaking = true
-		player.finished.connect(func():
-			speaking = false
-		)
+	play_random_audio($deagrro_audio)
 
 func clockman():
 	pass
@@ -174,3 +161,16 @@ func take_damage(damage_amount: float, damage_direction: Vector2, body: Characte
 	target = body
 	is_aggro = true
 
+func play_random_audio(node: Node):
+	var player: AudioStreamPlayer2D = node.get_child(
+		randi_range(0, node.get_child_count()-1)
+	)
+	speak(player)
+
+func speak(player):
+	if !speaking: 
+		player.play(0)
+		speaking = true
+		player.finished.connect(func():
+			speaking = false
+		)
