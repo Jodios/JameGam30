@@ -15,18 +15,27 @@ var health_third: float = max_health / 3
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var clock_enemy: Sprite2D = $GrandfatherClockEnemy
 @onready var timer: Timer = $Timer
-@onready var grind_bones_audio: Node = $grind_bones_audio
-@onready var grind_gears_audio: Node = $grind_gears_audio
 @onready var aggro_area: Area2D = $aggro_area
 @onready var attack_area: Area2D = $attack_area
 @onready var aggro_timer: Timer = $aggro_timer
 @onready var attack_cooldown: Timer = $attack_cooldown
 @onready var health_bar: ProgressBar = $health_bar
 
+@onready var grind_gears_audio: Node = $grind_gears_audio
+@onready var grind_bones_audio: Node = $grind_bones_audio
+@onready var aggro_audio: Node       = $aggro_audio
+@onready var deaggro_audio: Node     = $deagrro_audio
+@onready var hurt_audio: Node        = $hurt_audio
+@onready var kill_audio: Node        = $kill_audio
+@onready var death_audio: Node       = $death_audio
+@onready var gear_broke_audio: Node  = $gear_broke
+
 var target: CharacterBody2D = null
-var speaking: bool = false
+var dying: bool = false
 var is_aggro: bool = false
 var is_attacking: bool = false
+
+var audio_players := []
 
 enum active_direction {
 	FRONT,
@@ -47,7 +56,7 @@ func _ready():
 	aggro_area.body_entered.connect(set_aggro)
 	aggro_area.body_exited.connect(aggro_check)
 	health_bar.max_value = max_health
-	
+
 	attack_area.body_entered.connect(try_to_attack)
 	attack_area.body_exited.connect(try_to_stop_attacking)
 	attack_cooldown.timeout.connect(func():
@@ -62,7 +71,7 @@ func _physics_process(_delta):
 		clock_enemy.flip_h = true
 	if direction.x > 0:
 		clock_enemy.flip_h = false
-	
+
 	if health >= max_health:
 		health_bar.visible = false
 	else:
@@ -74,7 +83,7 @@ func _physics_process(_delta):
 		health_bar.modulate = Color(0xA4, 0x83, 0x00, 1)
 	else:
 		health_bar.modulate = Color(0xFF, 0x00, 0x00, 1)
-		
+
 	position += direction * speed
 	update_animation(direction)
 	move_and_collide(direction * speed)
@@ -94,7 +103,7 @@ func update_animation(move_direction: Vector2):
 	elif move_direction.x != 0:
 		animation_player.play("front_walk")
 		previous_direction = active_direction.FRONT
-	
+
 func change_state():
 	if is_aggro: return
 	if current_state == state.STANDING:
@@ -109,11 +118,22 @@ func change_state():
 		self.direction = Vector2.ZERO
 		timer.start(randi_range(1, stand_time_max))
 
-# This function will get called 
-# from the levels whenever a gear 
+# This function will get called
+# from the levels whenever a gear
 # gets hit
 func grind_his_gears():
 	play_random_audio(grind_gears_audio)
+
+func lament_defeat():
+	self.shut_up()
+	play_random_audio(gear_broke_audio)
+
+func die():
+	self.dying = true
+	self.speed = 0
+	self.shut_up()
+	await play_random_audio(death_audio).finished
+	queue_free()
 
 func set_aggro(body):
 	if body.has_method("playermethod"):
@@ -122,7 +142,7 @@ func set_aggro(body):
 		aggro_timer.stop()
 		target = body
 		play_random_audio($aggro_audio)
-		
+
 func aggro_check(body):
 	if body.has_method("playermethod"):
 		aggro_timer.start(aggro_time)
@@ -147,6 +167,8 @@ func attack():
 	attack_cooldown.start(attack_cooldown_seconds)
 	is_attacking = true
 	target.take_damage(damage)
+	if target.health <= 0:
+		play_random_audio(kill_audio)
 
 func try_to_stop_attacking(body):
 	if !body.has_method("playermethod"): return
@@ -155,22 +177,31 @@ func try_to_stop_attacking(body):
 
 func take_damage(damage_amount: float, damage_direction: Vector2, body: CharacterBody2D):
 	position -= damage_direction * 10
-	if health <= 0:
-		queue_free()
+	if health <= 0 && !dying:
+		die()
 	health -= damage_amount
 	target = body
 	is_aggro = true
+	if randi_range(0,3) > 2:
+		play_random_audio(hurt_audio)
 
-func play_random_audio(node: Node):
+func play_random_audio(node: Node, forced := false):
 	var player: AudioStreamPlayer2D = node.get_child(
 		randi_range(0, node.get_child_count()-1)
 	)
-	speak(player)
+	speak(player, forced)
+	return player
 
-func speak(player):
-	if !speaking: 
+func speak(player, forced):
+	var speaking = self.audio_players.size() > 0
+	if (forced || !speaking):
 		player.play(0)
-		speaking = true
+		self.audio_players.push_front(player)
 		player.finished.connect(func():
-			speaking = false
+			self.audio_players.pop_back()
 		)
+
+func shut_up():
+	while audio_players.size() > 0:
+		var player = audio_players.pop_front()
+		player.stop()

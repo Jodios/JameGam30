@@ -31,11 +31,21 @@ func take_damage(damage: float, damage_direction: Vector2 = Vector2.ZERO):
 	if health <= 0: return
 	turn_speed -= (damage/max_health)
 	health -= damage
-	if health <= 0: explode()
+	if health <= 0:
+		explode()
+		for clockman in get_all_clockmen():
+			clockman.lament_defeat()
+			return
+	for clockman in get_all_clockmen():
+		clockman.grind_his_gears()
+		return
+
+func get_all_clockmen():
+	var clockmen = []
 	for body in get_parent().get_children():
 		if body.has_method("grind_his_gears"):
-			body.grind_his_gears()
-			return
+			clockmen.append(body)
+	return clockmen
 
 func explode():
 	var explosion = preload("res://effects/explosion/explosion.tscn").instantiate()
