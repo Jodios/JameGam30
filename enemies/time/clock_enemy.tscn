@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://nwb8qkyyukbf"]
+[gd_scene load_steps=53 format=3 uid="uid://nwb8qkyyukbf"]
 
 [ext_resource type="Script" path="res://enemies/time/clock_enemy.gd" id="1_gipin"]
 [ext_resource type="Texture2D" uid="uid://c7hmfq6jp5dp" path="res://assets/chars/grandfather_clock_enemy.png" id="2_1m6km"]
@@ -13,6 +13,18 @@
 [ext_resource type="AudioStream" uid="uid://qxxhs3dubjbl" path="res://assets/audio/grind_gears/grind_gears_4.wav" id="11_rf0mk"]
 [ext_resource type="AudioStream" uid="uid://dbn8hcvk42w1o" path="res://assets/audio/grind_gears/grind_gears_5.wav" id="12_s4kqd"]
 [ext_resource type="AudioStream" uid="uid://ji51hv131613" path="res://assets/audio/grind_gears/grind_gears_6.wav" id="13_yjxyg"]
+[ext_resource type="AudioStream" uid="uid://nkidrkx5ijaf" path="res://assets/audio/aggro_deaggro/deaggro/1.wav" id="14_t4lyc"]
+[ext_resource type="AudioStream" uid="uid://csp7pmkch4xd0" path="res://assets/audio/aggro_deaggro/deaggro/2.wav" id="15_8iy8u"]
+[ext_resource type="AudioStream" uid="uid://binm03uk44fa2" path="res://assets/audio/aggro_deaggro/deaggro/3.wav" id="16_wfvgp"]
+[ext_resource type="AudioStream" uid="uid://baa273qpqgtuq" path="res://assets/audio/aggro_deaggro/deaggro/4.wav" id="17_ii0vo"]
+[ext_resource type="AudioStream" uid="uid://b50mxscfbp3vf" path="res://assets/audio/aggro_deaggro/deaggro/5.wav" id="18_5ry6h"]
+[ext_resource type="AudioStream" uid="uid://cqxbu60xhw8ip" path="res://assets/audio/aggro_deaggro/deaggro/6.wav" id="19_0vpha"]
+[ext_resource type="AudioStream" uid="uid://dxa5hxr6fijr1" path="res://assets/audio/aggro_deaggro/aggro/1.wav" id="20_drpxk"]
+[ext_resource type="AudioStream" uid="uid://dxwj1pa8nu2yn" path="res://assets/audio/aggro_deaggro/aggro/2.wav" id="21_kcnr3"]
+[ext_resource type="AudioStream" uid="uid://dutnit5mslnbj" path="res://assets/audio/aggro_deaggro/aggro/3.wav" id="22_jll3g"]
+[ext_resource type="AudioStream" uid="uid://cu5fl0lrls7iq" path="res://assets/audio/aggro_deaggro/aggro/4.wav" id="23_3uqcd"]
+[ext_resource type="AudioStream" uid="uid://7ksj3hkdn6ug" path="res://assets/audio/aggro_deaggro/aggro/5.wav" id="24_sjmgx"]
+[ext_resource type="AudioStream" uid="uid://belxmohrdu5e1" path="res://assets/audio/aggro_deaggro/aggro/6.wav" id="25_6u3h8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idmc1"]
 size = Vector2(50, 29)
@@ -294,6 +306,46 @@ bus = &"Audio"
 position = Vector2(-43, -41)
 stream = ExtResource("13_yjxyg")
 bus = &"Audio"
+
+[node name="deagrro_audio" type="Node" parent="."]
+
+[node name="deaggro_1" type="AudioStreamPlayer2D" parent="deagrro_audio"]
+stream = ExtResource("14_t4lyc")
+
+[node name="deaggro_2" type="AudioStreamPlayer2D" parent="deagrro_audio"]
+stream = ExtResource("15_8iy8u")
+
+[node name="deaggro_3" type="AudioStreamPlayer2D" parent="deagrro_audio"]
+stream = ExtResource("16_wfvgp")
+
+[node name="deaggro_4" type="AudioStreamPlayer2D" parent="deagrro_audio"]
+stream = ExtResource("17_ii0vo")
+
+[node name="deaggro_5" type="AudioStreamPlayer2D" parent="deagrro_audio"]
+stream = ExtResource("18_5ry6h")
+
+[node name="deaggro_6" type="AudioStreamPlayer2D" parent="deagrro_audio"]
+stream = ExtResource("19_0vpha")
+
+[node name="aggro_audio" type="Node" parent="."]
+
+[node name="aggro_1" type="AudioStreamPlayer2D" parent="aggro_audio"]
+stream = ExtResource("20_drpxk")
+
+[node name="aggro_2" type="AudioStreamPlayer2D" parent="aggro_audio"]
+stream = ExtResource("21_kcnr3")
+
+[node name="aggro_3" type="AudioStreamPlayer2D" parent="aggro_audio"]
+stream = ExtResource("22_jll3g")
+
+[node name="aggro_4" type="AudioStreamPlayer2D" parent="aggro_audio"]
+stream = ExtResource("23_3uqcd")
+
+[node name="aggro_5" type="AudioStreamPlayer2D" parent="aggro_audio"]
+stream = ExtResource("24_sjmgx")
+
+[node name="aggro_6" type="AudioStreamPlayer2D" parent="aggro_audio"]
+stream = ExtResource("25_6u3h8")
 
 [node name="aggro_area" type="Area2D" parent="."]
 
